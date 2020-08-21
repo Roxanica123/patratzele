@@ -1,0 +1,25 @@
+square {
+    grid-column: span 1;
+    grid-row: span 1;
+    margin: -1px;
+    padding: 0px;
+    height: 20vh;
+    width: 20vh;
+    color: cyan;
+    border-collapse: collapse;
+    border: 1px solid rgb(51, 51, 51);
+    transition: all 0.1s;
+}
+square:hover{
+    background-color: cyan;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+square.lightOn{
+    background-color: red;
+    transform: scale(1.1);
+}
+square.lightOf{
+    background-color: red;
+    transform: scale(0.0);
+}

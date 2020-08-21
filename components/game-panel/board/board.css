@@ -1,0 +1,13 @@
+@import "./square/square.css"; 
+
+board{
+    padding: 0px;
+    margin-top: 25px;
+    align-self: center;
+    width: 60vh;
+    height: 60vh;
+    border: 2px solid rgb(51, 51, 51);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}

@@ -1,0 +1,17 @@
+options-title {
+    align-self: center;
+    margin: 25px 0px;
+    max-width: 50%;
+    letter-spacing: 3px;
+    font-size: x-large;
+}
+number, time, difficulty{
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+    justify-content: space-between;
+    font-size: large;
+}
+label{
+    margin-right: 5px;
+}
