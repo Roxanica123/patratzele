@@ -1,6 +1,6 @@
 export class PopUp {
     static messages = {
-        "start": "Square Up! Your turn ;)",
+        "start": "Square Up! Your turn, click the red squares in the same order :)",
         "win": "Damn boy! Good job ;)",
         "time": "Can't believe I say this, but you should've been quicker ;)",
         "lost": "Come on! You can do better... I'm not asking you to square the circles ;)"

@@ -25,9 +25,9 @@ export const configurables = {
         attributes: {
             'type': 'range',
             'id': 'difficulty',
-            'min': 1,
-            'max': 4,
-            'value': 1
+            'min': 0,
+            'max': 3,
+            'value': 0
         }
     }
 }

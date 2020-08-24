@@ -10,8 +10,9 @@ export class Square {
     addSquare(target) {
         target.appendChild(this.element);
     }
-    async light(time) {
+    async light(time, random = 0) {
         this.element.setAttribute("class", "lightOn");
+        random ? this.element.style.backgroundColor = this.getRandomColor() : this.element.style.backgroundColor = "rgb(255, 0, 0)";
         await new Promise(async (resolve, reject) => {
             setTimeout(async () => {
 
@@ -20,6 +21,7 @@ export class Square {
                     this.element.setAttribute("class", "lightOf");
                     setTimeout(() => {
                         this.element.removeAttribute("class");
+                        this.element.removeAttribute("style");
                         resolve();
                     }, 100);
                 });
@@ -33,5 +35,12 @@ export class Square {
                 window.gamePanel.game.checkSquareClicked(this.element);
             }
         })
+    }
+    getRandomColor() {
+        let color;
+        do {
+            color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+        } while (color === "rgb(255, 0, 0)");
+        return color;
     }
 }

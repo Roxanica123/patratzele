@@ -9,7 +9,7 @@ export class GamePanel {
         const gameContainer = document.querySelector('game-container');
         this.board = new Board(gameContainer);
         this.optionsPanel = optionsPanel;
-        this.game=new Game(this.board, this.optionsPanel.getSelectedOptions());
+        this.game=new Game(this.board, this.optionsPanel);
         this.gameState = 0;
         this.addStartButton(gameContainer);
 

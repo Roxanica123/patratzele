@@ -15,11 +15,13 @@ square:hover{
     cursor: pointer;
     transform: scale(1.1);
 }
+
 square.lightOn{
-    background-color: red;
+    /*background-color: red;*/
     transform: scale(1.1);
 }
 square.lightOf{
-    background-color: red;
+    /*background-color: red;*/
     transform: scale(0.0);
 }
+

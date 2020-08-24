@@ -1,57 +1,53 @@
 import { PopUp } from "../components/pop-ups/pop-up.js";
 
 export class Game {
-    options;
+    optionsPanel;
     board;
-    lightAlgorithm;
+    options;
     squares = [];
-    index;
+    index = 0;
     gameState = 0;
-    constructor(board, options) {
-        this.options = options;
+    constructor(board, optionsPanel) {
+        this.optionsPanel = optionsPanel;
         this.board = board;
     }
 
     generateSquares() {
         for (let i = 0; i < this.options.number; i++) {
-            const nr = Math.floor(Math.random() * 9) + 1;
-            let board = 0;
-            if (this.options.difficulty > 2) {
-                board = Math.floor(Math.random() * 2);
-            }
-            this.squares.push({ number: nr, board: board });
+            this.squares.push(Math.floor(Math.random() * 9) + 1);
         }
     }
 
     async lightUp() {
         this.gameState = 1;
         for (let i = 0; i < this.squares.length; i++) {
-            await this.board.getSquare(this.squares[i].number).light(this.options.time);
+            let available = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            available.splice(this.squares[i] - 1, 1);
+            for (let j = 0; j < this.options.difficulty * 3 - 1; j++) {
+                const index = Math.floor(Math.random() * available.length);
+                this.board.getSquare(available[index]).light(this.options.time, 1);
+                available.splice(index, 1);
+            }
+            await this.board.getSquare(this.squares[i]).light(this.options.time);
         }
         this.gameState = 2;
-
     }
 
     async start() {
-        this.index = 0;
+        this.options = this.optionsPanel.getSelectedOptions();
         this.generateSquares();
         await this.lightUp();
         new PopUp("start").pop();
         setTimeout(async () => {
-            await this.getPlayerInput();
+            this.getPlayerInput();
         }, 3000);
 
     }
-    async checkSquareClicked(squareElement) {
-        console.log(squareElement);
-        if (this.squares[this.index].number == squareElement.id[1]) {
-            this.index++;
-        }
-        else {
-            this.gameState = 3;
-        }
+    checkSquareClicked(squareElement) {
+        this.squares[this.index] == squareElement.id[1] ? this.index++ : this.gameState = 3;
     }
-    async getPlayerInput() {
+
+    getPlayerInput() {
         const timeout = setTimeout(() => {
             this.gameDone(timeout, interval, "time");
         }, this.options.number * 2 * 1000);
@@ -65,12 +61,13 @@ export class Game {
             }
         }, 10);
     }
-    
+
     gameDone(timeout, interval, endCase) {
         clearTimeout(timeout);
         clearInterval(interval);
         new PopUp(endCase).pop();
         this.gameState = 0;
         this.squares = [];
+        this.index = 0;
     }
 }
