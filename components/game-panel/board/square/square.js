@@ -5,7 +5,6 @@ export class Square {
         this.id = id;
         this.element = document.createElement('square');
         this.element.setAttribute('id', "s" + this.id);
-        this.addClickEvent();
     }
     addSquare(target) {
         target.appendChild(this.element);
@@ -29,13 +28,7 @@ export class Square {
             }, time * 1000);
         });
     }
-    addClickEvent() {
-        this.element.addEventListener("click", () => {
-            if (window.gamePanel.game.gameState == 2) {
-                window.gamePanel.game.checkSquareClicked(this.element);
-            }
-        })
-    }
+
     getRandomColor() {
         let color;
         do {
